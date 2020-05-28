@@ -1,12 +1,13 @@
 package aufrichtig.nasa.neo;
 
+import javax.inject.Singleton;
 import javax.swing.*;
 import java.awt.*;
 
 /**
  * Display the NearEarthObject
  */
-
+@Singleton
 public class NearEarthObjectView extends JComponent {
 
     private NeoFeed.NearEarthObject neo;
@@ -32,7 +33,7 @@ public class NearEarthObjectView extends JComponent {
         g.setColor(Color.RED);
         g.fillOval(getWidth()-10, 200, 10, 10);
 
-        double lunars = neo.closeApproachData.get(0).missDistance.lunar;
+        double lunars = neo.closestLunarDistance();
         double uiDistance = getWidth()-10;
         double moonX = uiDistance / lunars;
 
@@ -40,4 +41,5 @@ public class NearEarthObjectView extends JComponent {
         g.setColor(Color.GRAY);
         g.fillOval((int) moonX, 200, 25, 25);
     }
+
 }
